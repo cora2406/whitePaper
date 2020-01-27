@@ -44,25 +44,27 @@ In the context of DOE's flagship facilities, data rates could grow to velocities
 At this data velocity, the data volume for a single 12 hour shift is equivalent to producing 56 years worth of HD video \cite{HowBigVideo} requiring just shy of 1/2 M\$ in storage assuming \$0.01/GB \cite{CostPerTB}.
 This data is projected to increase further to reach the goal of running the planned multimegapixel camera by 2028 at a MHz full frame readout.
 
-This drmatic increase in both data velocities and volumes pose unique challenges and require the reformulation and replacement of traditional data acquisition principles and cloud hosted data mining.
-We require information acquisition whereby our scientific instruments directly record actionable information, not raw data, in a form that can flexibly handle the weekly redefinition of ``information''---more likely redefinition every shift.
-Although the Edge computing paradigm has already begun, the DOE has a unique need for rapidly adaptive and flexible Edge AI.
-This raises a simultaneous need for not only data provenance tracking but also algorithm and model tracking for dynamic Edge information extraction.
-%Security that data is not being manipulated ``in-flight'' is certainly critical to autonomous vehicles \cite{brookings2019}, but one can also imagine how bad actors might mettle with or inject obfuscation into shared scientific data sets.
-%This would potentially harm the inferred results of data analysis and potentially mislead technological development.
-Data and model provenance and verification must be baked directly into the adaptive Edge AI paradigm for DOE's user facilities.
-%, and then with expanded application to the broader industrial and health sector use cases.
+This dramatic increase in both data velocities and volumes pose unique challenges and require the reformulation and replacement of traditional data acquisition principles and cloud hosted data mining. 
+User facilites have the added challenge that every week, new experiements with different requirements and objectives run, meaning that the acquisition system can not be static. 
+Thus, we require information acquisition whereby our scientific instruments directly record actionable information, not raw data, in a form that can flexibly handle the weekly redefinition of ``information''---more likely redefinition every shift.
+Although the Edge AI paradigm has already begun, the DOE has a unique need for rapidly adaptive and flexible Edge AI.
+This raises a simultaneous need for not only data provenance tracking but also algorithm and model tracking for the dynamic AI systems manipulating the data.
+Both data and model provenance and verification must be baked directly into the adaptive Edge AI paradigm for DOE's user facilities.
+
 
 \paragraph{Proposed solution}
 We take inspiration for out Edge Computing from Nature's own solution in the human eye.
-Much of vision processing occurs directly in the retina, in the Retinal Ganglion Cells well before passage via axons into the occipital lobe for deeper neural network inference.
-Decisive actions are triggered in the cornea---stabilizing eye movements, attention and anomaly actions---all of which precede awareness of the formulated image content.
-We propose a similar function for our scientific sensors; we will use Field Programmable Gate Arrays (FPGAs) and other emerging Edge AI hardware \cite{edgetpu_benchmarks,edgetpu,waveCGRA,CGRAreview,seaofcores} directly at the sensor.
-These inference accelerators will host flexibly and dynamically adaptive algorithms and inference models that extract contextually relevant information before transformation and passage down the analysis chain.
-The microchips themselves will use the in-flight information to adapt the analysis chain dynamically, stitching into the data header not only the data ID but also the shot-to-shot algorithm ID.
+A significant portion of vision processing occurs directly in the retina well before the information reaches the deeper neural networks inside the brain, including unconscious rapid reactions including stabilizing eye movements for example.
+We propose a similar function for our scientific sensors; a processing unit as near the detector as we can make it that can analyze incoming data in real-time and provide actionable information to the detector, the source, and the downstream (more complex) analysis networks.
+These inference engines will host dynamically adaptive algorithms and AI models that extract contextually relevant information before transformation and passage down the analysis chain.
+The Edge AI system will include an accountability system that uses the in-flight information to adapt the downstream analysis chain dynamically, stitching both the data ID and the shot-to-shot algorithm ID into the data header, logging the precise actions taken on the data.
 The full transaction chain will bind the unique fingerprint of the active model to the produced information in a uniquely identifiable provenance record as depicted in Fig.~\ref{fig::EdgeFlow}.
-The transaction record not only ensures data and model provenance, but also it allows for a dynamic data retention police whereby lifetime in archive can scale with the scientific value derived from the data and active algorithm.
+The transaction record not only ensures data and model provenance, but also allows for a dynamic data retention policy whereby lifetime in archive can scale with the scientific value derived from the data and active algorithm.
+In other words, the more the data is used, the longer it stays in active archive systems for other users. %Fix this if I misunderstood.
 The value aggregation could also reveal the integrated value for scientific facilities, experimental techniques, and sensor technologies.
+This Edge AI system will be hosted on Field Programmable Gate Arrays (FPGAs) and other emerging Edge AI hardware \cite{edgetpu_benchmarks,edgetpu,waveCGRA,CGRAreview,seaofcores} directly at the sensor, minimizing latency and thus requirement for ridiculously large buffer memories.
+The flexibility of FPGA and other reprogrammable devices are essential for user facilities like LCLS, so that the AI model can be replaced and upgraded for the requirements of different experiments. 
+
 
 \begin{figure}
 	\centerline{\includegraphics[clip,width=.75\linewidth]{EdgeFlow.eps}}
@@ -71,12 +73,6 @@ The value aggregation could also reveal the integrated value for scientific faci
 		Schematic of information flow through heterogeneous hardware with ID generation and provenance tracking.
 		}
 \end{figure}
-
-%Blockchain is a form of Distributed Ledger that is opening a new paradigm for data movement with collaborative verification and storage of transactional data.
-%We will initially focus on field programmable gate arrays (FPGAs) at the sensor to enable domain specific information extraction at the sensor that also initiates a unique ledger that recordes the analysis transactions used to extract, transform, and infer action from the data.
-%We will quickly include emerging Edge Computing microchips such as the EdgeTPU \cite{edgetpu_benchmarks,edgetpu}, coarse-grained reconfigurable arrays \cite{waveCGRA,CGRAreview}, ``sea-of-cores'' \cite{seaofcores} and others.
-%The chips will simultaneously execute the Edge inference models while updating the ledger.
-
 
 \paragraph{Deliverables}
 \begin{itemize}
